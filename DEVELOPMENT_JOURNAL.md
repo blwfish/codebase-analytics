@@ -84,6 +84,41 @@
 - How does this scale to team environments (multiple humans + Claude)?
 - Do different problem domains have dramatically different productivity curves?
 
+### Collaboration Model: Distinguished Engineer + AI Executor
+
+This work demonstrates a specific collaboration pattern that appears highly effective:
+
+**The Human (Distinguished Engineer, 25+ years experience):**
+- Sets vision and direction (what systems to build, architectural principles)
+- Makes strategic decisions (monorepo vs. separate repos, rewrite vs. patch, platform vs. one-off)
+- Understands system behavior at architectural level (can reason about churn patterns without reading implementation)
+- Evaluates quality and fitness-for-purpose
+- Steers execution through prioritization and feedback
+- Role: "Jedi ambassador" — mastery + mentorship mode
+
+**The AI (Claude):**
+- Executes implementation at scale (10k-40k LOC per project)
+- Handles mechanical complexity (C++, Python, JavaScript across domains)
+- Performs research and exploration (FreeCAD/OCCT interfaces, CAM algorithms)
+- Catches bugs through careful implementation
+- Serves as "second eyes" on complex integration work
+- Role: Capable executor with domain-specific depth
+
+**Why this works:**
+1. **Clear division of labor:** Human thinks architecturally; AI codes mechanically
+2. **Shared understanding:** Human can reason about system without writing it
+3. **Quality multiplication:** Human evaluation + AI execution produces production-quality code
+4. **Efficiency:** No time lost to context-switching between vision and implementation
+5. **Scale:** Human expertise amplified across multiple sophisticated systems
+
+**Evidence of effectiveness:**
+- 168k LOC across 19 projects in 3 months, all production-quality
+- Human understands architectural patterns (monorepo tightly-coupled-by-design, socket_server rewrite rationale, hardware expansion model)
+- Churn analysis reveals architectural insights (socket_server healing post-rewrite, mr-esp32 growth patterns match product expansion)
+- Strategic decisions (FreeCAD bug fix, KiCAD MCP development, socket_server amputation) all executed cleanly
+
+**Note:** This model is NOT "human becomes obsolete" or "AI writes code autonomously." It's the opposite: human expertise becomes the limiting factor, not the bottleneck. The 25 years of engineering judgment shape everything; the AI just enables it to be applied across more systems.
+
 ---
 
 ## Entry 2: [TBD]
