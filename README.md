@@ -6,6 +6,7 @@ Tools and tracking for understanding productivity and code volume across the `/V
 
 - **`count_code.sh`** — Analyze source code and test code across all projects
 - **`DEVELOPMENT_JOURNAL.md`** — Longitudinal tracking of AI-assisted development productivity
+- **`CHURN_ANALYSIS.md`** — Guide to analyzing git history with Code Maat (hotspots, coupling, knowledge silos)
 
 ## Quick Start
 
