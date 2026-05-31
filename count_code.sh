@@ -13,27 +13,29 @@ set -e
 # Configuration
 PROJECTS=(
   "blender-mcp"
+  "claude-journal"
   "COVA"
   "cova-shared"
   "curator"
   "FC-tools"
   "freecad-mcp"
+  "freecad-mr-generators"
   "imageSearch"
   "infrastructure"
   "kicad-mcp"
-  "KiCAD-mcp-extensions"
   "mcp-kicad-sch-api"
   "mqtt-logger"
   "mr-docs"
   "mr-esp32"
+  "needlestack"
   "number-boards"
-  "qwen-drawing-extractor"
+  "Poirot2"
   "racing-tagger"
   "robo-classifier"
-  "sanborn-stitch"
   "system-load-visualizer"
   "tooling"
-  "webserver"
+  "voice-jmri"
+  "vrf-monitor"
 )
 
 # Root directory to analyze (default: parent of this script)
@@ -95,26 +97,41 @@ for proj in "${PROJECTS[@]}"; do
     ! -path '*/~*' \
     ! -path '*/.pytest_cache/*' \
     ! -path '*/.claude/worktrees/*' \
+    ! -path '*/td-scan/repos/*' \
     ! -name 'test_*.py' \
     ! -name '*_test.py' \
+    ! -name 'test_*.js' \
     ! -name '*_test.js' \
+    ! -name 'test_*.ts' \
+    ! -name '*_test.ts' \
+    ! -name 'test_*.tsx' \
+    ! -name '*_test.tsx' \
+    ! -name 'test_*.cpp' \
     ! -name '*_test.cpp' \
+    ! -name 'test_*.rs' \
+    ! -name '*_test.rs' \
+    ! -name '*_test.go' \
     ! -path '*/tests/*' \
     ! -path '*/test/*' \
     2>/dev/null | xargs wc -l 2>/dev/null | tail -1 | awk '{print $1}')
 
   # Test code (test_*.py, *_test.py files and tests/ directories)
   tst=$(find "$proj_path" \
-    \( -name 'test_*.py' -o -name '*_test.py' -o -name 'test_*.js' -o -name '*_test.cpp' -o \( \( -path '*/tests/*' -o -path '*/test/*' \) -a \( -name '*.py' -o -name '*.js' -o -name '*.cpp' \) \) \) \
+    \( -name 'test_*.py' -o -name '*_test.py' -o -name 'test_*.js' -o -name '*_test.js' -o -name 'test_*.ts' -o -name '*_test.ts' -o -name 'test_*.tsx' -o -name '*_test.tsx' -o -name 'test_*.cpp' -o -name '*_test.cpp' -o -name 'test_*.rs' -o -name '*_test.rs' -o -name '*_test.go' -o \( \( -path '*/tests/*' -o -path '*/test/*' \) -a \( -name '*.py' -o -name '*.js' -o -name '*.ts' -o -name '*.tsx' -o -name '*.cpp' -o -name '*.rs' -o -name '*.go' \) \) \) \
     ! -path '*/.git/*' \
     ! -path '*/venv/*' \
     ! -path '*/.venv/*' \
     ! -path '*/.pixi/*' \
     ! -path '*/node_modules/*' \
     ! -path '*/__pycache__/*' \
+    ! -path '*/.pio/*' \
+    ! -path '*/.pioenvs/*' \
+    ! -path '*/libdeps/*' \
     ! -path '*/.cache/*' \
     ! -path '*/~*' \
     ! -path '*/.pytest_cache/*' \
+    ! -path '*/.claude/worktrees/*' \
+    ! -path '*/td-scan/repos/*' \
     2>/dev/null | xargs wc -l 2>/dev/null | tail -1 | awk '{print $1}')
 
   [ -z "$src" ] && src=0
