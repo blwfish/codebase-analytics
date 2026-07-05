@@ -20,14 +20,17 @@ PROJECTS=(
   "FC-tools"
   "freecad-mcp"
   "freecad-mr-generators"
+  "heimdall"
   "imageSearch"
   "infrastructure"
   "kicad-mcp"
   "mcp-kicad-sch-api"
+  "mneme"
   "mqtt-logger"
   "mr-docs"
   "mr-esp32"
   "needlestack"
+  "nikon-fleet"
   "number-boards"
   "Poirot2"
   "racing-tagger"
@@ -83,14 +86,15 @@ EXCLUDES=(
   ! -path '*/~*'
   ! -path '*/.pytest_cache/*'
   ! -path '*/.claude/worktrees/*'
+  ! -path '*/.claude/skills/*'
   ! -path '*/actions-runner*/*'
   ! -path '*/td-scan/repos/*'
 )
 
 echo "Analyzing code in: $ROOT_DIR"
 echo ""
-echo "PROJECT | SOURCE | TESTS | TOTAL"
-echo "---|---|---|---"
+echo "PROJECT                        |   SOURCE |    TESTS |    TOTAL"
+echo "-------------------------------|----------|----------|---------"
 
 TOTAL_SRC=0
 TOTAL_TST=0
@@ -147,6 +151,6 @@ for proj in "${PROJECTS[@]}"; do
   fi
 done
 
-echo "---|---|---|---"
+echo "-------------------------------|----------|----------|---------"
 GRAND=$((TOTAL_SRC + TOTAL_TST))
 printf "%-30s | %8d | %8d | %8d\n" "TOTAL" "$TOTAL_SRC" "$TOTAL_TST" "$GRAND"
