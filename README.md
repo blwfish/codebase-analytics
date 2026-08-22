@@ -27,20 +27,25 @@ Analyze from a different root:
 
 ## Methodology
 
+Counting rules live in one place — `codecount.py` — shared by `count_code.py`
+(current-tree snapshot, invoked via `count_code.sh`) and `growth_analysis.py`
+(historical trend via `git archive`), so the two can't drift apart.
+
 ### What Gets Counted (Source Code)
-- `.py`, `.cpp`, `.c`, `.h`, `.js`, `.ts`, `.tsx`, `.java`, `.rs`, `.go` files
+- `.py`, `.c`, `.cpp`, `.h`, `.js`, `.ts`, `.tsx`, `.jsx`, `.java`, `.rs`, `.go`, `.swift`, `.ino`, `.sh`, `.lua` files
 - Application code, libraries, MCPs, firmware, infrastructure-as-code
 
 ### What Gets Counted (Test Code)
-- Files matching `test_*.py`, `*_test.py`, `*_test.js`, `*_test.cpp`
-- Code in `tests/` or `test/` directories
-- Pytest fixtures, test utilities
+- Files matching `test_*.EXT` / `*_test.EXT` (py/js/ts/tsx/cpp/rs/go), `*Tests.swift`, `conftest*.py`
+- Code in `tests/`, `test/`, or `Tests/` directories
+- Rust unit tests written inline in a `#[cfg(test)]` block are reclassified out of
+  source and into test line counts (Rust has no separate-file test convention)
 
 ### What's Excluded
-- **Dependencies:** `venv/`, `.venv/`, `.pixi/`, `node_modules/`
-- **Build artifacts:** `build/`, `dist/`, `.pio/`, `~*`
+- **Dependencies:** `venv/`, `.venv/`, `.pixi/`, `node_modules/`, `vendor/`, `site-packages/`
+- **Build artifacts:** `build/`, `dist/`, `.build/`, `target/`, `.pio/`, `.pioenvs/`, `libdeps/`, `~*`
 - **Version control & caches:** `.git/`, `.pytest_cache/`, `__pycache__/`, `.cache/`
-- **Worktrees:** `.claude/worktrees/`
+- **Worktrees & tooling:** `.claude/worktrees/`, `.claude/skills/`, `actions-runner*/`
 - **Configuration & docs:** YAML, JSON, Markdown (unless they're code or specs)
 
 This approach gives an honest count of actual source code without inflating numbers with dependencies or build outputs.
