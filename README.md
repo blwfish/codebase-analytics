@@ -73,6 +73,7 @@ This approach gives an honest count of actual source code without inflating numb
 | `racing-tagger` | Racing photo tagging |
 | `robo-classifier` | Robot classifier |
 | `sanborn-stitch` | Sanborn map stitching |
+| `siril-mcp` | Siril (astrophotography) MCP server |
 | `system-load-visualizer` | System load visualization |
 | `tooling` | General tooling |
 | `webserver` | Web infrastructure |

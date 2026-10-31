@@ -57,6 +57,7 @@ PROJECTS = [
     "Poirot2",
     "racing-tagger",
     "robo-classifier",
+    "siril-mcp",
     "system-load-visualizer",
     "tooling",
     "voice-jmri",
