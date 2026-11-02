@@ -59,6 +59,7 @@ PROJECTS = [
     "number-boards",
     "Poirot2",
     "racing-tagger",
+    "release-gate",
     "robo-classifier",
     "siril-mcp",
     "system-load-visualizer",

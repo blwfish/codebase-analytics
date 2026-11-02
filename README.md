@@ -71,6 +71,7 @@ This approach gives an honest count of actual source code without inflating numb
 | `number-boards` | Number board generation |
 | `qwen-drawing-extractor` | Drawing extraction with Qwen |
 | `racing-tagger` | Racing photo tagging |
+| `release-gate` | Update gate: classifies releases and signs them with TUF |
 | `robo-classifier` | Robot classifier |
 | `sanborn-stitch` | Sanborn map stitching |
 | `siril-mcp` | Siril (astrophotography) MCP server |
